@@ -23,6 +23,11 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v4
 
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
       - name: Install packages
         run: pnpm install --frozen-lockfile --prod
 
@@ -39,25 +44,25 @@ jobs:
   #     - name: Ping webhook
   #       run: |
   #         curl -n ${{ secrets.VERCEL_WEBHOOK }}
-      # - name: Executing remote ssh commands using ssh key and checkout source
-      #   uses: appleboy/ssh-action@v1.0.3
-      #   with:
-      #     host: ${{ secrets.SSH_HOST }}
-      #     username: ${{ secrets.SSH_USER }}
-      #     key: ${{ secrets.SSH_PRIVATE_KEY }}
-      #     script: |
-      #       cd ${{ secrets.SSH_ROOT_DIR }}
-      #       git pull
-      #     script_stop: true
+  # - name: Executing remote ssh commands using ssh key and checkout source
+  #   uses: appleboy/ssh-action@v1.0.3
+  #   with:
+  #     host: ${{ secrets.SSH_HOST }}
+  #     username: ${{ secrets.SSH_USER }}
+  #     key: ${{ secrets.SSH_PRIVATE_KEY }}
+  #     script: |
+  #       cd ${{ secrets.SSH_ROOT_DIR }}
+  #       git pull
+  #     script_stop: true
 
-      # - name: Build and restart service
-      #   uses: appleboy/ssh-action@v1.0.3
-      #   with:
-      #     host: ${{ secrets.SSH_HOST }}
-      #     username: ${{ secrets.SSH_USER }}
-      #     key: ${{ secrets.SSH_PRIVATE_KEY }}
-      #     script: |
-      #       cd ${{ secrets.SSH_ROOT_DIR }}
-      #       npm ci --unsafe-perm=true --allow-root
-      #       npm run build
-      #     script_stop: true
+  # - name: Build and restart service
+  #   uses: appleboy/ssh-action@v1.0.3
+  #   with:
+  #     host: ${{ secrets.SSH_HOST }}
+  #     username: ${{ secrets.SSH_USER }}
+  #     key: ${{ secrets.SSH_PRIVATE_KEY }}
+  #     script: |
+  #       cd ${{ secrets.SSH_ROOT_DIR }}
+  #       npm ci --unsafe-perm=true --allow-root
+  #       npm run build
+  #     script_stop: true
