@@ -1,9 +1,8 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   compatibilityDate: '2024-04-03',
-  ssr: true,
   devtools: { enabled: true },
-  modules: ['@ant-design-vue/nuxt', 'nuxt-booster'],
+  modules: ['@ant-design-vue/nuxt', 'nuxt-booster', 'nuxt-particles', "@nuxt/image"],
   booster: {
     detection: {
       performance: true,
@@ -53,6 +52,16 @@ export default defineNuxtConfig({
     alias: {
       youtube: 'https://img.youtube.com',
       vimeo: 'https://i.vimeocdn.com'
+    }
+  },
+
+  vite: {
+    css: {
+      preprocessorOptions: {
+        scss: {
+          additionalData: '@use "~/assets/main.scss" as *;'
+        }
+      }
     }
   }
 })

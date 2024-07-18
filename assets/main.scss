@@ -1,0 +1,39 @@
+@import './base.scss';
+@import './font-size.scss';
+
+body {
+  font-size: 18px;
+  --tw-text-opacity: 1;
+  --tw-bg-opacity: 1;
+  background: rgb(15 23 42 / var(--tw-bg-opacity));
+  --scrollbarBG: transparent;
+  --thumbBG: #5a6072;
+  font-family: Inter, sans-serif;
+}
+
+#app {
+  margin: 0 auto;
+  font-weight: normal;
+}
+
+a,
+.green {
+  text-decoration: none;
+  transition: 0.4s;
+  padding: 3px;
+}
+
+.scrollbar::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  height: 0.5rem;
+  width: 0.5rem;
+  
+}
+
+.scrollbar::-webkit-scrollbar-thumb,
+body::-webkit-scrollbar-thumb {
+  --tw-bg-opacity: 1;
+  background-color: rgb(71 85 105 / var(--tw-bg-opacity));
+  border-radius: 0.25rem;
+  border: 0.125rem solid var(--scrollbarBG);
+}
