@@ -12,7 +12,9 @@
   "dependencies": {
     "@ant-design-vue/nuxt": "^1.4.2",
     "ant-design-vue": "^4.2.3",
+    "mime-types": "^2.1.35",
     "nuxt": "^3.12.3",
+    "nuxt-booster": "^3.0.16",
     "vue": "latest"
   }
 }
