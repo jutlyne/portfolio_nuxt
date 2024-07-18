@@ -8,7 +8,6 @@
 
     <a-menu
       class="nav-header font-large"
-      :selectedKeys="current"
       theme="dark"
       mode="horizontal"
       :items="items"
@@ -18,4 +17,3 @@
 </template>
 
 <script lang="ts" src="./scripts.ts" default />
-<style lang="scss" src="./style.scss" />

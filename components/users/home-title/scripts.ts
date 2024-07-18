@@ -1,6 +1,6 @@
-import { defineComponent, onMounted, ref } from 'vue'
+import { onMounted, ref } from 'vue'
 
-export default defineComponent({
+export default defineNuxtComponent({
   setup() {
     const currentIndex = ref<number>(1)
     const direction = ref<number>(1)

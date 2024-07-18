@@ -1,9 +1,9 @@
-import { defineComponent, h, ref, watch } from 'vue'
+import './style.scss'
+import { h, ref, watch } from 'vue'
 import type { MenuEvent, MenuItem } from '@/interfaces/MenuInterface'
 import { FacebookOutlined, GithubOutlined, InstagramOutlined } from '@ant-design/icons-vue'
-// import("@ant-design/icons-vue")
 
-export default defineComponent({
+export default defineNuxtComponent({
   setup() {
     const route = useRoute()
     const router = useRouter()
@@ -15,7 +15,7 @@ export default defineComponent({
         key: 'blogs.index',
         label: 'Blogs',
         title: 'Blogs',
-        to: 'blogs.index'
+        to: 'blogs'
       },
       // {
       //   key: 'resume',
@@ -44,23 +44,23 @@ export default defineComponent({
     ])
 
     const handleMenuClick = async ({ item }: MenuEvent) => {
-      if (item.to && route.name != item.to) {
-        const query = item.to == 'blogs.index' ? { ref: 1 } : {}
-        await router.push({ name: item.to, query })
-      } else if (item.url) {
-        window.open(item.url, '_blank')
-      }
+      // if (item.to && route.name != item.to) {
+      //   const query = item.to == 'blogs.index' ? { ref: 1 } : {}
+      //   await router.push({ name: item.to, query })
+      // } else if (item.url) {
+      //   window.open(item.url, '_blank')
+      // }
     }
 
-    watch(current, (newValue, oldValue) => {
-      if (socialIcon.includes(newValue[0] as string)) {
-        current.value = oldValue
-      }
-    })
+    // watch(current, (newValue, oldValue) => {
+    //   if (socialIcon.includes(newValue[0] as string)) {
+    //     current.value = oldValue
+    //   }
+    // })
 
-    watch(route, () => {
-      current.value = [route.name]
-    })
+    // watch(route, () => {
+    //   current.value = [route.name]
+    // })
 
     return {
       current,
