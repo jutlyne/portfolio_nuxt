@@ -1,7 +1,7 @@
 <template>
   <a-row class="title-container">
     <a-col :span="16" class="max-width-md">
-      <h1>
+      <!-- <h1>
         <span>H</span>
         <span>i</span>
         <span>,</span>
@@ -31,7 +31,7 @@
         <span>p</span>
         <span>e</span>
         <span>r</span>
-      </h1>
+      </h1> -->
       <p>Backend Developer</p>
       <a-button class="button" @click="blankUrl('https://www.facebook.com/JutLyNee')"
         >Liên hệ Facebook</a-button
