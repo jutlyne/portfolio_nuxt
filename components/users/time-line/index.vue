@@ -20,5 +20,5 @@
   </a-timeline>
 </template>
 
-<script lang="ts" src="./scripts.ts" default />
+<script lang="ts" src="./index.ts" default />
 <style lang="scss" src="./style.scss" />

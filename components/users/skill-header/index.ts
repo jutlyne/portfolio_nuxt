@@ -11,34 +11,29 @@ export default defineNuxtComponent({
     }
   },
   setup() {
-    const tagRef = inject<Ref<TagInterface | null>>(injectionKeys.skillTag)!
+    const tagRef = inject<Ref<string | null>>(injectionKeys.skillTag)!
 
     const formatString = (str: string) => {
-      if (!str) return
-
       return str.toLowerCase().replace(/\s+/g, '-')
     }
 
-    const handleSkillClick = (tag: TagInterface) => {
-      if (tag?.name == 'All') {
-        tagRef.value = null
-      } else {
-        tagRef.value = tag
-      }
-    }
-
-    const getTag = (): TagInterface | null => {
-      return tagRef.value
-    }
-
-    const getActiveClass = (id: number | null) => {
-      let btnClass = ''
-      const tag = getTag()
-      if (tag?.id == id) {
-        btnClass = 'active'
+    const handleSkillClick = (skill?: string) => {
+      let tag = null
+      if (skill && skill !== 'All') {
+        tag = formatString(skill)
       }
 
-      return btnClass
+      tagRef.value = tag
+    }
+
+    const getTag = () => {
+      return tagRef.value || ''
+    }
+
+    const getActiveClass = (str: string) => {
+      return formatString(str) == getTag() || (formatString(str) == 'all' && !getTag())
+        ? 'active'
+        : ''
     }
 
     return {

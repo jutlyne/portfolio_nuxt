@@ -11,9 +11,10 @@
       theme="dark"
       mode="horizontal"
       :items="items"
+      :selectedKeys="current"
       @click="handleMenuClick"
     />
   </header>
 </template>
 
-<script lang="ts" src="./scripts.ts" default />
+<script lang="ts" src="./index.ts" default />

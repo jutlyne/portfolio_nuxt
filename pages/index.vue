@@ -10,10 +10,4 @@
   </div>
 </template>
 
-<!-- <script setup lang="ts">
-definePageMeta({
-  layout: 'users'
-})
-</script> -->
-
 <script lang="ts" src="./home/index.ts" default />

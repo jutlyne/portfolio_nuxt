@@ -1,9 +1,7 @@
 import { pageSize } from '@/constants/constant'
-import { defineComponent } from 'vue'
-
 import { Pagination } from 'ant-design-vue'
 
-export default defineComponent({
+export default defineNuxtComponent({
   components: {
     APagination: Pagination
   },

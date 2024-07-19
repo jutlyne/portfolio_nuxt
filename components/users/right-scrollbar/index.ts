@@ -1,16 +1,13 @@
 export default defineNuxtComponent({
   props: {
-    data: {
+    items: {
       type: Object,
-      required: true,
-      default: () => ({})
-    },
-    totalData: {
-      type: Number,
       required: true
     }
   },
   setup() {
+    console.log('right-scroll')
+
     return {}
   }
 })

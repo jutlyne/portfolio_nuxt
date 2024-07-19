@@ -2,27 +2,25 @@
 export default defineNuxtConfig({
   compatibilityDate: '2024-04-03',
   devtools: { enabled: true },
-  modules: ['@ant-design-vue/nuxt', 'nuxt-booster', 'nuxt-particles', "@nuxt/image"],
-  runtimeConfig: {
-    public: {
-      baseAPIUrl: process.env.BASE_API_URL,
-    }
-  },
-  webpack: {
-    extractCSS: true,
-    optimization: {
-      splitChunks: {
-        cacheGroups: {
-          styles: {
-            name: 'styles',
-            test: /\.(css|vue)$/,
-            chunks: 'all',
-            enforce: true
-          }
-        }
+  modules: ['nuxt-booster', 'nuxt-particles', '@nuxt/image'],
+  render: {
+    bundleRenderer: {
+      shouldPreload: (file: any, type: string) => {
+        return ['script', 'style', 'font'].includes(type)
       }
     }
   },
+  runtimeConfig: {
+    public: {
+      baseAPIUrl: process.env.BASE_API_URL
+    }
+  },
+  components: [
+    {
+      path: '~/components',
+      extensions: ['.vue']
+    }
+  ],
 
   booster: {
     detection: {
@@ -83,6 +81,16 @@ export default defineNuxtConfig({
           additionalData: '@use "~/assets/main.scss" as *;'
         }
       }
+    },
+    build: {
+      minify: 'esbuild',
+      cssMinify: 'esbuild'
+    },
+    server: {
+      headers: {
+        'Cross-Origin-Embedder-Policy': 'require-corp',
+        'Cross-Origin-Opener-Policy': 'same-origin'
+      }
     }
   },
 
@@ -100,11 +108,13 @@ export default defineNuxtConfig({
       meta: [
         {
           name: 'description',
-          content: 'Portfolio của Võ Cao Kỳ - Backend Developer. Khám phá các dự án và kỹ năng phát triển backend của tôi.'
+          content:
+            'Portfolio của Võ Cao Kỳ - Backend Developer. Khám phá các dự án và kỹ năng phát triển backend của tôi.'
         },
         {
           name: 'keywords',
-          content: 'Võ Cao Kỳ, Backend Developer, Backend Development, Web Development, Software Developer, Programmer, Portfolio, JutLy, JutLyNe'
+          content:
+            'Võ Cao Kỳ, Backend Developer, Backend Development, Web Development, Software Developer, Programmer, Portfolio, JutLy, JutLyNe'
         },
         {
           name: 'author',
@@ -128,7 +138,8 @@ export default defineNuxtConfig({
         },
         {
           property: 'og:description',
-          content: 'Portfolio của Võ Cao Kỳ - Backend Developer. Khám phá các dự án và kỹ năng phát triển backend của tôi.'
+          content:
+            'Portfolio của Võ Cao Kỳ - Backend Developer. Khám phá các dự án và kỹ năng phát triển backend của tôi.'
         },
         // {
         //   property: 'og:image',
@@ -160,7 +171,8 @@ export default defineNuxtConfig({
         },
         {
           name: 'twitter:description',
-          content: 'Portfolio của Võ Cao Kỳ - Backend Developer chuyên nghiệp. Khám phá các dự án và kỹ năng phát triển backend của tôi.'
+          content:
+            'Portfolio của Võ Cao Kỳ - Backend Developer chuyên nghiệp. Khám phá các dự án và kỹ năng phát triển backend của tôi.'
         },
         // {
         //   name: 'twitter:image',

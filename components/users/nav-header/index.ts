@@ -12,7 +12,7 @@ export default defineNuxtComponent({
     const current = ref<(any | null | undefined)[]>([route.name])
     const items = ref<MenuItem[]>([
       {
-        key: 'blogs.index',
+        key: 'blogs',
         label: 'Blogs',
         title: 'Blogs',
         to: 'blogs'
@@ -44,23 +44,23 @@ export default defineNuxtComponent({
     ])
 
     const handleMenuClick = async ({ item }: MenuEvent) => {
-      // if (item.to && route.name != item.to) {
-      //   const query = item.to == 'blogs.index' ? { ref: 1 } : {}
-      //   await router.push({ name: item.to, query })
-      // } else if (item.url) {
-      //   window.open(item.url, '_blank')
-      // }
+      if (item.to && route.name != item.to) {
+        const query = item.to == 'blogs.index' ? { ref: 1 } : {}
+        await router.push({ name: item.to, query })
+      } else if (item.url) {
+        window.open(item.url, '_blank')
+      }
     }
 
-    // watch(current, (newValue, oldValue) => {
-    //   if (socialIcon.includes(newValue[0] as string)) {
-    //     current.value = oldValue
-    //   }
-    // })
+    watch(current, (newValue, oldValue) => {
+      if (socialIcon.includes(newValue[0] as string)) {
+        current.value = oldValue
+      }
+    })
 
-    // watch(route, () => {
-    //   current.value = [route.name]
-    // })
+    watch(route, () => {
+      current.value = [route.name]
+    })
 
     return {
       current,

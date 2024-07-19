@@ -1,4 +1,4 @@
-import { inject, onBeforeMount, ref, watch, type Ref } from 'vue'
+import { inject, ref, watch, type Ref } from 'vue'
 import { getList } from '@/api/blog'
 import { injectionKeys } from '@/constants/injectionKeys'
 import { pageSize } from '@/constants/constant'
@@ -6,11 +6,7 @@ import paginationControls from '@/composables/paginationControls'
 import { useRoute, useRouter } from 'vue-router'
 
 export default defineNuxtComponent({
-  setup() {
-    definePageMeta({
-      layout: 'users'
-    })
-    
+  async setup() {
     const blogs = ref({})
     const isLoading = inject<Ref<boolean>>(injectionKeys.isLoading)!
     const totalItem = inject<Ref<number>>(injectionKeys.totalItem)!
@@ -26,36 +22,36 @@ export default defineNuxtComponent({
     }
 
     const { setCategory, activePaginate } = paginationControls()
-    // setCategory(['All', 'PHP', 'NodeJs', 'VueJs', 'AWS', 'CICD', 'Life'])
+    setCategory(['All', 'PHP', 'NodeJs', 'VueJs', 'AWS', 'CICD', 'Life'])
     activePaginate(true)
 
     const fetchBlogData = async (limit: number, skip: number) => {
       isLoading.value = true
-
       try {
-        currentPage.value = Math.floor(skip / limit) + 1
+        const tag = getTag()
 
-        const data = await getList({ limit, skip })
-        if (Object.keys(data).length !== 0) {
-          blogs.value = data.posts
-          totalItem.value = data.total
-        }
+        currentPage.value = Math.floor(skip / limit) + 1
+        return await getList({ limit, skip, tag })
       } finally {
         isLoading.value = false
       }
     }
 
-    onBeforeMount(async () => {
+    const { data: fetchedBlogs, refresh } = await useAsyncData('blogs', async () => {
       if (route.query?.ref) {
         currentPage.value = 1
         tagRef.value = ''
-        tagRef.value = ''
-        router.replace('blog')
+        await router.replace('blogs')
       }
 
       const skip = (currentPage.value - 1) * pageSize
-      await fetchBlogData(pageSize, skip)
+      const result = await fetchBlogData(pageSize, skip)
+
+      return result || { posts: {}, total: 0 }
     })
+
+    blogs.value = fetchedBlogs.value?.posts || {}
+    totalItem.value = fetchedBlogs.value?.total || 0
 
     onPageChange.value = async (page: number, pageSize: number) => {
       window.scrollTo({ top: 0, behavior: 'smooth' })
@@ -63,9 +59,9 @@ export default defineNuxtComponent({
       await fetchBlogData(pageSize, skip)
     }
 
-    // watch(tagRef, async () => {
-    //   await fetchBlogData(pageSize, 0)
-    // })
+    watch(tagRef, async () => {
+      await fetchBlogData(pageSize, 0)
+    })
 
     return {
       categories,

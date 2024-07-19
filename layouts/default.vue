@@ -1,7 +1,7 @@
 <template>
   <div>
-    <UsersNavHeader v-show='!isLoading' />
-    <UsersHotNotice v-show='!isLoading' />
+    <UsersNavHeader />
+    <UsersHotNotice />
     <div class="user-content">
       <UsersSkillHeader v-if="categories && categories.length" :data="categories" />
       <UsersLoading v-if="isLoading" />

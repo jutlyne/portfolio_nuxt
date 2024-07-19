@@ -6,7 +6,7 @@ export interface PaginateInterface extends AxiosRequestConfig {
 }
 
 export interface BlogQueryInterface extends Pick<PaginateInterface, 'skip' | 'limit'> {
-  tag?: number
+  tag?: string
   title?: string
   q?: string
 }

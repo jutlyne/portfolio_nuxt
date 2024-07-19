@@ -5,5 +5,5 @@ export const injectionKeys = {
   currentPage: Symbol(),
   onPageChange: Symbol(),
   categories: Symbol(),
-  skillTag: Symbol(),
+  skillTag: Symbol()
 }

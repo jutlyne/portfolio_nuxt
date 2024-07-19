@@ -1,10 +1,8 @@
 <template>
-  <UsersTimeLine :data="blogs" :totalData="totalItem" />
+  <!-- <UsersTimeLine :data="blogs" :totalData="totalItem" /> -->
+  <div>
+    <p>123</p>
+  </div>
 </template>
 
-<!-- <script setup lang="ts">
-definePageMeta({
-  layout: 'users'
-})
-</script> -->
-<script lang="ts" src="./scripts.ts" default />
+<!-- <script lang="ts" src="./index.ts" default /> -->
